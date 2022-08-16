@@ -1,0 +1,4 @@
+[submodule "fadroma"]
+	path = fadroma
+	url = git@github.com:hackbg/fadroma.git
+	branch = refactor/x

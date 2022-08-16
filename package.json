@@ -1,0 +1,16 @@
+{
+  "name": "sample-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "scripts": {
+    "compile": "npx polar compile"
+  },
+  "dependencies": {
+    "@types/chai": "^4.3.0",
+    "secret-polar": "^0.9.8"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6"
+  }
+}
