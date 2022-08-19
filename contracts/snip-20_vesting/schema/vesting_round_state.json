@@ -1,17 +1,27 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "ConfigState",
+  "title": "VestingRoundState",
   "type": "object",
   "required": [
+    "created_at",
+    "is_paused",
     "merkle_root",
-    "owner",
-    "token_address"
+    "token_address",
+    "total_claimed"
   ],
   "properties": {
+    "created_at": {
+      "type": "integer",
+      "format": "uint64",
+      "minimum": 0.0
+    },
+    "is_paused": {
+      "type": "boolean"
+    },
     "merkle_root": {
       "type": "string"
     },
-    "owner": {
+    "token_address": {
       "description": "Owner If None set, contract is frozen.",
       "allOf": [
         {
@@ -19,8 +29,8 @@
         }
       ]
     },
-    "token_address": {
-      "$ref": "#/definitions/CanonicalAddr"
+    "total_claimed": {
+      "$ref": "#/definitions/Uint128"
     }
   },
   "definitions": {
@@ -30,6 +40,9 @@
     },
     "CanonicalAddr": {
       "$ref": "#/definitions/Binary"
+    },
+    "Uint128": {
+      "type": "string"
     }
   }
 }

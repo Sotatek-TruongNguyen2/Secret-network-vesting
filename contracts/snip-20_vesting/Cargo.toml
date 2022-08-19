@@ -1,5 +1,5 @@
 [package]
-name = "snip-20-vesting"
+name = "snip-20_vesting"
 version = "1.0.0"
 authors = ["{{authors}}"]
 edition = "2018"

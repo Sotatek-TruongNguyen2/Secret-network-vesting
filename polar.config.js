@@ -1,14 +1,24 @@
 const accounts = [
-  // {
-  //   name: 'account_0',
-  //   address: 'secret1pt7vpkzpm7f6n6nvcvx096gfnln4qkawhpfk8g',
-  //   mnemonic: 'salad holiday elevator exile marble casual job extend sail wedding feed language electric gloom orphan night input oval differ mango shock year cake saddle'
-  // },
   {
     name: 'account_0',
-    address: 'secret1fc3fzy78ttp0lwuujw7e52rhspxn8uj52zfyne',
-    mnemonic: 'jelly shadow frog dirt dragon use armed praise universe win jungle close inmate rain oil canvas beauty pioneer chef soccer icon dizzy thunder meadow',
-  }
+    address: 'secret1pt7vpkzpm7f6n6nvcvx096gfnln4qkawhpfk8g',
+    mnemonic: 'salad holiday elevator exile marble casual job extend sail wedding feed language electric gloom orphan night input oval differ mango shock year cake saddle'
+  },
+  // {
+  //   name: 'account_0',
+  //   address: 'secret1fc3fzy78ttp0lwuujw7e52rhspxn8uj52zfyne',
+  //   mnemonic: 'jelly shadow frog dirt dragon use armed praise universe win jungle close inmate rain oil canvas beauty pioneer chef soccer icon dizzy thunder meadow',
+  // },
+  // {
+  //   name: 'account_1',
+  //   address: 'secret1ldjxljw7v4vk6zhyduywh04hpj0jdwxsmrlatf',
+  //   mnemonic: 'word twist toast cloth movie predict advance crumble escape whale sail such angry muffin balcony keen move employ cook valve hurt glimpse breeze brick',
+  // },
+  // {
+  //   name: 'account_2',
+  //   address: 'secret1ajz54hz8azwuy34qwy9fkjnfcrvf0dzswy0lqq',
+  //   mnemonic: 'chair love bleak wonder skirt permit say assist aunt credit roast size obtain minute throw sand usual age smart exact enough room shadow charge',
+  // },
 ];
 
 const networks = {

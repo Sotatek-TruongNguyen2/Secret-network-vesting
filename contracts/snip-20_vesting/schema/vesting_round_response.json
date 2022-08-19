@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VestingRoundResponse",
+  "type": "object",
+  "required": [
+    "created_at",
+    "merkle_root",
+    "stage",
+    "token_address",
+    "total_claimed"
+  ],
+  "properties": {
+    "created_at": {
+      "type": "integer",
+      "format": "uint64",
+      "minimum": 0.0
+    },
+    "merkle_root": {
+      "type": "string"
+    },
+    "stage": {
+      "$ref": "#/definitions/Uint128"
+    },
+    "token_address": {
+      "type": "string"
+    },
+    "total_claimed": {
+      "$ref": "#/definitions/Uint128"
+    }
+  },
+  "definitions": {
+    "Uint128": {
+      "type": "string"
+    }
+  }
+}

@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "scripts": {
+    "deploy": "yarn clean && yarn compile && npx polar run ./scripts/vesting.deploy.js --network testnet",
     "clean": "npx polar clean",
     "compile": "npx polar compile --network localnet",
     "test": "yarn clean && yarn compile && npx polar test --network localnet"

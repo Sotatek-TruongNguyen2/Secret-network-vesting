@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HandleMsg",
+  "anyOf": [
+    {
+      "type": "object",
+      "required": [
+        "register_new_vesting_round"
+      ],
+      "properties": {
+        "register_new_vesting_round": {
+          "type": "object",
+          "required": [
+            "merkle_root"
+          ],
+          "properties": {
+            "is_paused": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "merkle_root": {
+              "type": "string"
+            },
+            "token_address": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/HumanAddr"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "set_contract_status"
+      ],
+      "properties": {
+        "set_contract_status": {
+          "type": "object",
+          "required": [
+            "level"
+          ],
+          "properties": {
+            "level": {
+              "$ref": "#/definitions/ContractStatusLevel"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "grant_contract_owner"
+      ],
+      "properties": {
+        "grant_contract_owner": {
+          "type": "object",
+          "required": [
+            "new_admin"
+          ],
+          "properties": {
+            "new_admin": {
+              "$ref": "#/definitions/HumanAddr"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "claim_contract_owner"
+      ],
+      "properties": {
+        "claim_contract_owner": {
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "revoke_granted_contract_owner"
+      ],
+      "properties": {
+        "revoke_granted_contract_owner": {
+          "type": "object"
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "ContractStatusLevel": {
+      "type": "string",
+      "enum": [
+        "normal_run",
+        "stop_all"
+      ]
+    },
+    "HumanAddr": {
+      "type": "string"
+    }
+  }
+}

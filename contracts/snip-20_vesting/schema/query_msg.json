@@ -31,6 +31,28 @@
           "type": "object"
         }
       }
+    },
+    {
+      "type": "object",
+      "required": [
+        "contract_owner"
+      ],
+      "properties": {
+        "contract_owner": {
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "granted_contract_owner"
+      ],
+      "properties": {
+        "granted_contract_owner": {
+          "type": "object"
+        }
+      }
     }
   ],
   "definitions": {
