@@ -23,7 +23,7 @@ In `scripts` folder:
 
 First of all you need to create an instance of your contract using contract name.
 ```js
-const contract = new Contract('sample-project', runtimeEnv);
+const contract = new Contract('vesting', runtimeEnv);
 
 // To deploy your contract
 const deploy_response = await contract.deploy(account);

@@ -1,11 +1,11 @@
 const accounts = [
+  // {
+  //   name: 'account_0',
+  //   address: 'secret1pt7vpkzpm7f6n6nvcvx096gfnln4qkawhpfk8g',
+  //   mnemonic: 'salad holiday elevator exile marble casual job extend sail wedding feed language electric gloom orphan night input oval differ mango shock year cake saddle'
+  // },
   {
     name: 'account_0',
-    address: 'secret1pt7vpkzpm7f6n6nvcvx096gfnln4qkawhpfk8g',
-    mnemonic: 'salad holiday elevator exile marble casual job extend sail wedding feed language electric gloom orphan night input oval differ mango shock year cake saddle'
-  },
-  {
-    name: 'account_1',
     address: 'secret1fc3fzy78ttp0lwuujw7e52rhspxn8uj52zfyne',
     mnemonic: 'jelly shadow frog dirt dragon use armed praise universe win jungle close inmate rain oil canvas beauty pioneer chef soccer icon dizzy thunder meadow',
   }
@@ -13,7 +13,8 @@ const accounts = [
 
 const networks = {
   localnet: {
-    endpoint: 'http://localhost:1337/',
+    endpoint: 'http://localhost:1317/',
+    chainId: "secretdev-11",
     accounts,
   },
   // Pulsar-2
@@ -58,6 +59,6 @@ module.exports = {
     timeout: 60000
   },
   rust: {
-    version: "1.55.0",
+    version: "1.65.0",
   },
 };

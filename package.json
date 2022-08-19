@@ -1,13 +1,17 @@
 {
-  "name": "sample-project",
+  "name": "vesting",
   "version": "1.0.0",
   "main": "index.js",
   "license": "Apache-2.0",
   "scripts": {
-    "compile": "npx polar compile"
+    "clean": "npx polar clean",
+    "compile": "npx polar compile --network localnet",
+    "test": "yarn clean && yarn compile && npx polar test --network localnet"
   },
   "dependencies": {
     "@types/chai": "^4.3.0",
+    "keccak256": "^1.0.6",
+    "merkletreejs": "^0.2.32",
     "secret-polar": "^0.9.8"
   },
   "devDependencies": {
