@@ -4,6 +4,8 @@ pub mod state;
 pub mod utils;
 pub mod helpers;
 mod constants;
+mod merkle_proof;
+mod vesting;
 
 #[cfg(target_arch = "wasm32")]
 mod wasm {

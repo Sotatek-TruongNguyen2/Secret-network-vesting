@@ -14,6 +14,16 @@
             "merkle_root"
           ],
           "properties": {
+            "distribution": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/HumanAddr"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
             "is_paused": {
               "type": [
                 "boolean",
@@ -31,6 +41,12 @@
                 {
                   "type": "null"
                 }
+              ]
+            },
+            "token_code_hash": {
+              "type": [
+                "string",
+                "null"
               ]
             }
           }
@@ -96,6 +112,58 @@
           "type": "object"
         }
       }
+    },
+    {
+      "type": "object",
+      "required": [
+        "claim"
+      ],
+      "properties": {
+        "claim": {
+          "type": "object",
+          "required": [
+            "amount",
+            "cliff",
+            "duration",
+            "proof",
+            "stage",
+            "start_at",
+            "tge"
+          ],
+          "properties": {
+            "amount": {
+              "$ref": "#/definitions/Uint128"
+            },
+            "cliff": {
+              "type": "integer",
+              "format": "uint64",
+              "minimum": 0.0
+            },
+            "duration": {
+              "type": "integer",
+              "format": "uint64",
+              "minimum": 0.0
+            },
+            "proof": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "stage": {
+              "$ref": "#/definitions/Uint128"
+            },
+            "start_at": {
+              "type": "integer",
+              "format": "uint64",
+              "minimum": 0.0
+            },
+            "tge": {
+              "$ref": "#/definitions/Uint128"
+            }
+          }
+        }
+      }
     }
   ],
   "definitions": {
@@ -107,6 +175,9 @@
       ]
     },
     "HumanAddr": {
+      "type": "string"
+    },
+    "Uint128": {
       "type": "string"
     }
   }

@@ -4,9 +4,11 @@
   "type": "object",
   "required": [
     "created_at",
+    "distribution",
     "is_paused",
     "merkle_root",
     "token_address",
+    "token_code_hash",
     "total_claimed"
   ],
   "properties": {
@@ -15,6 +17,14 @@
       "format": "uint64",
       "minimum": 0.0
     },
+    "distribution": {
+      "description": "Owner If None set, contract is frozen",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CanonicalAddr"
+        }
+      ]
+    },
     "is_paused": {
       "type": "boolean"
     },
@@ -22,12 +32,10 @@
       "type": "string"
     },
     "token_address": {
-      "description": "Owner If None set, contract is frozen.",
-      "allOf": [
-        {
-          "$ref": "#/definitions/CanonicalAddr"
-        }
-      ]
+      "$ref": "#/definitions/CanonicalAddr"
+    },
+    "token_code_hash": {
+      "type": "string"
     },
     "total_claimed": {
       "$ref": "#/definitions/Uint128"

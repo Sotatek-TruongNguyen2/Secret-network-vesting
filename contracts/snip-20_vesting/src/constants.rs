@@ -23,3 +23,6 @@ pub fn u8_to_status_level(status_level: u8) -> StdResult<ContractStatusLevel> {
         _ => Err(StdError::generic_err("Invalid state level")),
     }
 }
+
+pub const TGE_PRECISION: u128 = 10000;
+pub const ONE_DAY_IN_SECONDS: u64 = 24 * 60 * 60;

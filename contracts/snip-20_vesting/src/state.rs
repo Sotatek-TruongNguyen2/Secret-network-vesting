@@ -3,14 +3,10 @@ use serde::{Deserialize, Serialize};
 use std::any::type_name;
 
 
-use cosmwasm_std::{CanonicalAddr, ReadonlyStorage, StdError, StdResult, Storage, Uint128};
-use cosmwasm_storage::{PrefixedStorage, ReadonlyPrefixedStorage};
-use secret_toolkit::{
-    storage::{TypedStoreMut, TypedStore},
-};
+use cosmwasm_std::{CanonicalAddr, ReadonlyStorage, StdError, StdResult, Storage, Uint128 };
+use cosmwasm_storage::{PrefixedStorage, ReadonlyPrefixedStorage, Bucket, ReadonlyBucket};
 
 use crate::{helpers::{set_bin_data, slice_to_u128, slice_to_u8}, constants::{ContractStatusLevel, status_level_to_u8, u8_to_status_level}};
-use crate::utils::Duration;
 
 pub static PREFIX_CONTRACT_OWNER_GRANTED: &[u8] = b"contract_owner_granted";
 pub static PREFIX_CONTRACT_OWNER: &[u8] = b"contract_owner";
@@ -22,7 +18,9 @@ pub static USER_VESTING_STATS_PREFIX: &[u8] = b"user_vesting";
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct VestingRoundState {
-    /// Owner If None set, contract is frozen.
+    /// Owner If None set, contract is frozen
+    pub distribution: CanonicalAddr,
+    pub token_code_hash: String,
     pub token_address: CanonicalAddr,
     pub total_claimed: Uint128,
     pub merkle_root: String,
@@ -36,11 +34,12 @@ pub struct UserVestingStatsState {
     pub user: CanonicalAddr,
     pub total_amount: Uint128,
     pub total_claimed: Uint128,
-    pub start_vesting_epoch: Duration,
-    pub vesting_duration: Duration,
-    pub cliff: Duration,
+    pub vesting_duration: u64,
+    pub cliff: u64,
     pub tge: Uint128,
-    pub last_claim_epoch: Uint128,
+    pub start_vesting_epoch: u64,
+    // pub next_claim_epoch: u64,
+    pub next_claim_epoch_index: u64
 }
 
 // ============== VestingRound (Mutate ) ================= //
@@ -244,27 +243,25 @@ impl<'a, S: ReadonlyStorage> ReadonlyConfigImpl<'a, S> {
 pub fn write_user_vesting_stats<S: Storage>(
     storage: &mut S,
     vesting_stats: &UserVestingStatsState,
-    stage: Uint128
+    stage: u128
 ) -> StdResult<()> {
-    let mut user_vesting_store = PrefixedStorage::multilevel(
+    let mut user_vesting_store = Bucket::<S, UserVestingStatsState>::multilevel(
         &[USER_VESTING_STATS_PREFIX, vesting_stats.user.as_slice()],
         storage,
     );
-    let mut user_vesting_store = TypedStoreMut::attach(&mut user_vesting_store);
 
-    user_vesting_store.store(&stage.0.to_be_bytes(), vesting_stats)
+    user_vesting_store.save(&stage.to_be_bytes(), vesting_stats)
 }
 
 pub fn read_user_vesting_stats<S: Storage>(
-    storage: &mut S,
+    storage: &S,
     user: &CanonicalAddr,
-    stage: Uint128
+    stage: u128
 ) -> StdResult<Option<UserVestingStatsState>> {
-    let user_vesting_store = ReadonlyPrefixedStorage::multilevel(
+    let user_vesting_store = ReadonlyBucket::<S, UserVestingStatsState>::multilevel(
         &[USER_VESTING_STATS_PREFIX, user.as_slice()],
         storage,
     );
-    let user_vesting_store: TypedStore<UserVestingStatsState, ReadonlyPrefixedStorage<S>> = TypedStore::attach(&user_vesting_store);
 
-    user_vesting_store.may_load(&stage.0.to_be_bytes())
+   user_vesting_store.may_load(&stage.to_be_bytes())
 }

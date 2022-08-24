@@ -25,7 +25,9 @@ pub enum QueryMsg {
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
     RegisterNewVestingRound {
+        distribution: Option<HumanAddr>,
         token_address: Option<HumanAddr>,
+        token_code_hash: Option<String>,
         is_paused: Option<bool>,
         merkle_root: String
     },
@@ -37,7 +39,16 @@ pub enum HandleMsg {
         new_admin: HumanAddr
     },
     ClaimContractOwner {},
-    RevokeGrantedContractOwner {}
+    RevokeGrantedContractOwner {},
+    Claim {
+        proof: Vec<String>,
+        stage: Uint128,
+        amount: Uint128,
+        tge: Uint128,
+        start_at: u64,
+        cliff: u64,
+        duration: u64,
+    }
 }
 
 #[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
