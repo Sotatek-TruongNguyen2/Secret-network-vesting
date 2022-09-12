@@ -94,7 +94,7 @@ describe("vesting", () => {
     expect(contract.contractAddress).to.be.not.null;
   });
 
-  xdescribe("Ownership", async function () {
+  describe("Ownership", async function () {
     it("contract owner able to register new vesting round!", async () => {
       const { other, snip20_token, contract_owner, contract, WHITELIST_USERS } = await setup();
 

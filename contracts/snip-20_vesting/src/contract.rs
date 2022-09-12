@@ -157,8 +157,6 @@ fn try_claim<S: Storage, A: Api, Q: Querier>(
                     .checked_add(cliff)
                     .unwrap()
                     .checked_div(ONE_DAY_IN_SECONDS)
-                    .unwrap()
-                    .checked_add(1u64)
                     .unwrap(),
                 total_amount: Uint128::from(total_amount),
                 total_claimed: Uint128::from(0u128),
@@ -202,7 +200,7 @@ fn try_claim<S: Storage, A: Api, Q: Querier>(
 
                 config.total_claimed =
                     Uint128::from(config.total_claimed.u128().checked_add(tge_amount).unwrap());
-            
+
                 logs.push(log("tge_amount", tge_amount));
             }
 
@@ -216,7 +214,6 @@ fn try_claim<S: Storage, A: Api, Q: Querier>(
         .checked_add(user_vesting_stats.cliff)
         .unwrap());
 
-        
     // check whether there exists remaining tokens amount to claim
     if user_vesting_stats.total_claimed >= user_vesting_stats.total_amount {
         return Err(StdError::generic_err("Exceeds maximum claim amount!"));
